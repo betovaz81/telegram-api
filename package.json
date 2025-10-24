@@ -1,0 +1,25 @@
+{
+  "name": "telegram-command",
+  "version": "1.0.0",
+  "description": "Microservicio para llamada de api",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "api",
+    "command",
+    "telegram"
+  ],
+  "author": "betovaz81",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
