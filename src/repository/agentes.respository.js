@@ -1,8 +1,14 @@
 
 class AgentesRepository{
 
+    constructor() {
+        // Asigna el valor a la propiedad de la instancia
+        this.service = process.env.SERVICE || "http://localhost:8000";
+        console.log(`Usando el servicio: ${this.service}`);
+    }
+
     async getAgentes(){
-        const url = 'http://localhost:8000/api/agentes';
+        const url = this.service+'/api/agentes';
         let agentes = []; // Variable donde guardaremos el resultado
     
         try {
@@ -15,11 +21,12 @@ class AgentesRepository{
             
         } catch (error) {
             console.error('Hubo un problema con la petición Fetch:', error);
+            throw new Error(`Error ${error}`);
         }
     }
 
     async showAgente(agente){
-        const url = 'http://localhost:8000/api/agentes/show/'+agente;
+        const url = this.service+'/api/agentes/show/'+agente;
         let agentes = []; // Variable donde guardaremos el resultado
     
         try {
@@ -37,7 +44,7 @@ class AgentesRepository{
 
 
     async addAgente(agente,nombre){
-        const url = 'http://localhost:8000/api/agentes/add/'+agente+'/'+nombre;
+        const url = this.service+'/api/agentes/add/'+agente+'/'+nombre;
         let agentes = []; // Variable donde guardaremos el resultado
     
         try {

@@ -81,15 +81,18 @@ bot.onText(/\/agente/,(msg,match)=>{
                   switch(userMessage){
                     case 'list':
                       console.log("Obtenemos informacion del endpoint y terminamos:")
-                    
-                      const agentes = await AgentesRepository.getAgentes();
-                      if(agentes.status =='ok'){
-                        console.log(agentes.all)
-                        bot.sendMessage(chatId, JSON.stringify(agentes.all));
-                        }else{
-                        throw new Error(`Error al obtener informacion de los agentes`);
-                        }                    
-                      conversationState.set(chatId, 'termina');
+                      try{
+                        const agentes = await AgentesRepository.getAgentes();
+                        if(agentes.status =='ok'){
+                          console.log(agentes.all)
+                          bot.sendMessage(chatId, JSON.stringify(agentes.all));
+                          }else{
+                          throw new Error(`Error al obtener informacion de los agentes`);
+                          }                    
+                        conversationState.set(chatId, 'termina');
+                      }catch(error){
+                        bot.sendMessage(chatId, "Disculpa tenemos problemas",error);
+                      }
                     break;
                     case 'show':
                       bot.sendMessage(chatId, '¿usuario?');
