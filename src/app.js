@@ -1,9 +1,12 @@
+import dotenv from 'dotenv';
 import AgentesRepository from './repository/agentes.respository.js';
 import TelegramBot from 'node-telegram-bot-api';
 //const TelegramBot = require('node-telegram-bot-api');
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '8399057944:AAGF0tnU7SR9KCmkYuuZbqHe01li_PrnZ1c';
+dotenv.config()
+const token=process.env.TELEGRAM_TOKEN || ""
+
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
